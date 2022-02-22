@@ -11,6 +11,8 @@ Simple and portable (but not inflexible) GUI library in C that uses the native G
 
 ## Status
 
+This repo has some messy quick patches to add some extra features to the linux part (gtk).
+
 libui-ng is currently **mid-alpha** software.
 
 See [CHANGELOG.md](CHANGELOG.md)
