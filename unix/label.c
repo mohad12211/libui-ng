@@ -27,6 +27,7 @@ uiLabel *uiNewLabel(const char *text)
 	uiUnixNewControl(uiLabel, l);
 
 	l->widget = gtk_label_new(text);
+	gtk_label_set_line_wrap(GTK_LABEL (l->widget), TRUE);
 	l->misc = GTK_MISC(l->widget);
 	l->label = GTK_LABEL(l->widget);
 
