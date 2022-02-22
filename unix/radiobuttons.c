@@ -103,13 +103,13 @@ void uiRadioButtonsOnSelected(uiRadioButtons *r, void (*f)(uiRadioButtons *, voi
 	r->onSelectedData = data;
 }
 
-uiRadioButtons *uiNewRadioButtons(void)
+uiRadioButtons *uiNewRadioButtons(int orientation)
 {
 	uiRadioButtons *r;
 
 	uiUnixNewControl(uiRadioButtons, r);
 
-	r->widget = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+	r->widget = gtk_box_new(orientation, 0);
 	r->container = GTK_CONTAINER(r->widget);
 	r->box = GTK_BOX(r->widget);
 

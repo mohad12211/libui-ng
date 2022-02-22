@@ -256,7 +256,7 @@ _UI_EXTERN void uiRadioButtonsAppend(uiRadioButtons *r, const char *text);
 _UI_EXTERN int uiRadioButtonsSelected(uiRadioButtons *r);
 _UI_EXTERN void uiRadioButtonsSetSelected(uiRadioButtons *r, int n);
 _UI_EXTERN void uiRadioButtonsOnSelected(uiRadioButtons *r, void (*f)(uiRadioButtons *, void *), void *data);
-_UI_EXTERN uiRadioButtons *uiNewRadioButtons(void);
+_UI_EXTERN uiRadioButtons *uiNewRadioButtons(int orientation);
 
 struct tm;
 typedef struct uiDateTimePicker uiDateTimePicker;
