@@ -172,5 +172,5 @@ libui_binary_deps = []
 if libui_mode == 'static'
 	libui_binary_deps = libui_deps
 endif
-subdir('test')
-subdir('examples')
+#subdir('test')
+#subdir('examples')
