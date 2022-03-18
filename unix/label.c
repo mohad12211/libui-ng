@@ -29,6 +29,7 @@ uiLabel *uiNewLabel(const char *text)
 	l->widget = gtk_label_new(text);
 	gtk_label_set_use_markup(GTK_LABEL (l->widget), TRUE);
 	gtk_label_set_line_wrap(GTK_LABEL (l->widget), TRUE);
+	gtk_label_set_line_wrap_mode(GTK_LABEL(l->widget), PANGO_WRAP_WORD_CHAR);
 	l->misc = GTK_MISC(l->widget);
 	l->label = GTK_LABEL(l->widget);
 
