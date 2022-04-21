@@ -82,10 +82,10 @@ char *uiOpenFile(uiWindow *parent, const char *defaultPath, const char *filter)
 			  defaultPath, NULL, filter);
 }
 
-char *uiOpenFolder(uiWindow *parent)
+char *uiOpenFolder(uiWindow *parent, const char *defaultPath)
 {
 	return filedialog(windowWindow(parent), GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER, "_Open",
-			  NULL, NULL, NULL);
+			  defaultPath, NULL, "");
 }
 
 char *uiSaveFile(uiWindow *parent, const char *defaultPath, const char *defaultName, const char *filter)
