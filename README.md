@@ -9,15 +9,9 @@ Fork of [andlabs/libui](https://github.com/andlabs/libui). This README is being 
 
 Simple and portable (but not inflexible) GUI library in C that uses the native GUI technologies of each platform it supports.
 
-## Status
-
 This repo has some messy quick patches to add some extra features to the linux part (gtk).
 
 libui-ng is currently **mid-alpha** software.
-
-See [CHANGELOG.md](CHANGELOG.md)
-
-*Old announcements can be found in the [news.md](old/news.md) file.*
 
 ## Runtime Requirements
 
@@ -26,16 +20,18 @@ See [CHANGELOG.md](CHANGELOG.md)
 * Mac OS X: OS X 10.8 or newer
 
 ## Build Requirements
+* [Meson](https://mesonbuild.com/) 0.48.0 or newer
+* Any of Meson's backends; this section assumes you are using [Ninja](https://ninja-build.org/), but there is no reason the other backends shouldn't work.
 
-* All platforms:
-	* [Meson](https://mesonbuild.com/) 0.48.0 or newer
-	* Any of Meson's backends; this section assumes you are using [Ninja](https://ninja-build.org/), but there is no reason the other backends shouldn't work.
-* Windows: either
-	* Microsoft Visual Studio 2013 or newer (2013 is needed for `va_copy()`) — you can build either a static or a shared library
-	* MinGW-w64 (other flavors of MinGW may not work) — **you can only build a static library**; shared library support will be re-added once the following features come in:
-		* [Isolation awareness](https://msdn.microsoft.com/en-us/library/aa375197%28v=vs.85%29.aspx), which is how you get themed controls from a DLL without needing a manifest
-* Unix: nothing else specific
-* Mac OS X: nothing else specific, so long as you can build Cocoa programs
+## Quick Building Instructions
+
+```
+$ git clone https://github.com/mohad12211/libui-ng.git
+$ cd libui-ng
+$ meson setup build --buildtype=release --default-library=static 
+$ ninja -C build
+```
+then copy `libui.a` that's inside `build/meson-out` into `libs` directory (replace it).
 
 ## Building
 
