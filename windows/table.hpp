@@ -44,6 +44,8 @@ struct uiTable {
 	void *headerOnClickedData;
 	void (*onSelectionChanged)(uiTable *, void *);
 	void *onSelectionChangedData;
+	void (*onRowDoubleClicked)(uiTable *, int, void *);
+	void *onRowDoubleClickedData;
 };
 extern int uiprivTableProgress(uiTable *t, int item, int subitem, int modelColumn, LONG *pos);
 

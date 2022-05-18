@@ -22,6 +22,8 @@ struct uiTable {
 	void *headerOnClickedData;
 	void (*onSelectionChanged)(uiTable *, void *);
 	void *onSelectionChangedData;
+	void (*onRowDoubleClicked)(uiTable *, int, void *);
+	void *onRowDoubleClickedData;
 };
 
 // use the same size as GtkFileChooserWidget's treeview
@@ -628,6 +630,26 @@ static void uiTableDestroy(uiControl *c)
 	uiFreeControl(uiControl(t));
 }
 
+static void onRowDoubleClicked(GtkTreeView *tv, GtkTreePath *path, GtkTreeViewColumn *col, gpointer data)
+{
+	uiTable *t = uiTable(data);
+	gint row = gtk_tree_path_get_indices(path)[0];
+
+	(*(t->onRowDoubleClicked))(t, row, t->onRowDoubleClickedData);
+}
+
+static void defaultOnRowDoubleClicked(uiTable *table, int row, void *data)
+{
+	// do nothing
+}
+
+void uiTableOnRowDoubleClicked(uiTable *t, void (*f)(uiTable *, int, void *), void *data)
+{
+	t->onRowDoubleClicked = f;
+	t->onRowDoubleClickedData = data;
+}
+
+
 uiTable *uiNewTable(uiTableParams *p)
 {
 	uiTable *t;
@@ -659,6 +681,8 @@ uiTable *uiNewTable(uiTableParams *p)
 
 	g_signal_connect(G_OBJECT(gtk_tree_view_get_selection(t->tv)), "changed",
 		G_CALLBACK(onSelectionChanged), t);
+	uiTableOnRowDoubleClicked(t, defaultOnRowDoubleClicked, NULL);
+	g_signal_connect(t->tv, "row-activated", G_CALLBACK(onRowDoubleClicked), t);
 
 	return t;
 }

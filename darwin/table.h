@@ -20,6 +20,8 @@ struct uiTable {
 	void *headerOnClickedData;
 	void (*onSelectionChanged)(uiTable *, void *);
 	void *onSelectionChangedData;
+	void (*onRowDoubleClicked)(uiTable *, int, void *);
+	void *onRowDoubleClickedData;
 };
 
 // tablecolumn.m

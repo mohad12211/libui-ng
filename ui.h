@@ -1550,6 +1550,12 @@ _UI_EXTERN void uiTableSetCurrentSelection(uiTable *t, uiTableSelection *sel);
 // uiFreeTableSelection frees the given uiTableSelection* and all resources.
 _UI_EXTERN void uiFreeTableSelection(uiTableSelection* s);
 
+// uiTableOnRowDoubleClicked sets a callback to be called when the user
+// double clicks a table row.
+_UI_EXTERN void uiTableOnRowDoubleClicked(uiTable *t,
+	void (*f)(uiTable *t, int row, void *data),
+	void *data);
+
 #ifdef __cplusplus
 }
 #endif
