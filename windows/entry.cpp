@@ -63,9 +63,12 @@ char *uiEntryText(uiEntry *e)
 
 void uiEntrySetText(uiEntry *e, const char *text)
 {
+	int l;
 	// doing this raises an EN_CHANGED
 	e->inhibitChanged = TRUE;
 	uiWindowsSetWindowText(e->hwnd, text);
+	l = (int)strlen(text);
+	SendMessage(e->hwnd, EM_SETSEL, l, l);
 	e->inhibitChanged = FALSE;
 	// don't queue the control for resize; entry sizes are independent of their contents
 }
@@ -126,9 +129,11 @@ uiEntry *uiNewSearchEntry(void)
 	HRESULT hr;
 
 	e = finishNewEntry(0);
-	// TODO this is from ThemeExplorer; is it documented anywhere?
-	// TODO SearchBoxEditComposited has no border
-	hr = SetWindowTheme(e->hwnd, L"SearchBoxEdit", NULL);
-	// TODO will hr be S_OK if themes are disabled?
+
+	hr = SetWindowTheme(e->hwnd, L"SearchBoxEditComposited", NULL);
+	if (hr != S_OK || !IsAppThemed()) {
+		//TODO log: Failed to apply search box theme.
+	}
+
 	return e;
 }
