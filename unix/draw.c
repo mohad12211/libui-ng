@@ -164,7 +164,7 @@ uiImageBuffer *uiNewImageBuffer(uiDrawContext *c, int width, int height, int alp
 
 void uiImageBufferUpdate(uiImageBuffer *buf, const void *data)
 {
-	unsigned char *src = data;
+	const unsigned char *src = data;
 	unsigned char *dst = cairo_image_surface_get_data(buf->buf);
 	int y;
 
